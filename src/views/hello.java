@@ -2,6 +2,7 @@
 public class Hello {
   public static void main(String args[]) {
     System.out.println("Hello Chi");
+    System.out.prinln("Today is my birthday");
 
     int z, y, temp;
     System.out.println("Enter z and y");
