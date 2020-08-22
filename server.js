@@ -7,6 +7,10 @@ const fs = require('fs');
 
 const port = 4336;
 
+const book = require(__dirname + `/src/data/book.json`);
+
+
+
 app.use(cors());
 
 app.use(bodyParser.urlencoded({
@@ -46,8 +50,9 @@ app.get('/hello', (req, res) => {
 
 //load books
 app.get('/get-book-api', (req, res) => {
-  let rawdata = fs.readFileSync(__dirname + `/src/data/book.json`);
-  res.status(200).send(JSON.parse(rawdata));
+  //let rawdata = fs.readFileSync(__dirname + `/src/data/book.json`);
+  //res.status(200).send(JSON.parse(rawdata));
+  res.status(200).send(book);
 })
 
 //render table
