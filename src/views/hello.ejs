@@ -31,6 +31,69 @@ body {
     <div class="alert alert-primary" role="alert">
       Hello <%= data.name %>. <%= data.comment %>
     </div>
+
+    <br/>
+    <p class="text-center">GET vs POST request from <a href="https://www.w3schools.com/tags/ref_httpmethods.asp">w3schools</a></p>
+
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">GET</th>
+          <th scope="col">POST</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">BACK button/Reload</th>
+          <td>Harmless</td>
+          <td>Data will be re-submitted (the browser should alert the user that the data are about to be re-submitted)</td>
+        </tr>
+        <tr>
+          <th scope="row">Bookmarked</th>
+          <td>Can be bookmarked</td>
+          <td>Cannot be bookmarked</td>
+        </tr>
+        <tr>
+          <th scope="row">Cached</th>
+          <td>Can be cached</td>
+          <td>Not cached</td>
+        </tr>
+        <tr>
+          <th scope="row">Encoding type</th>
+          <td>application/x-www-form-urlencoded	</td>
+          <td>application/x-www-form-urlencoded or multipart/form-data. Use multipart encoding for binary data</td>
+        </tr>
+        <tr>
+          <th scope="row">History</th>
+          <td>Parameters remain in browser history</td>
+          <td>Parameters are not saved in browser history</td>
+        </tr>
+        <tr>
+          <th scope="row">Restrictions on data length</th>
+          <td>Yes, when sending data, the GET method adds the data to the URL; and the length of a URL is limited (maximum URL length is 2048 characters)</td>
+          <td>No restrictions</td>
+        </tr>
+        <tr>
+          <th scope="row">Restrictions on data type</th>
+          <td>Only ASCII characters allowed</td>
+          <td>No restrictions. Binary data is also allowed</td>
+        </tr>
+        <tr>
+          <th scope="row">Security</th>
+          <td>GET is less secure compared to POST because data sent is part of the URL
+            <br/>
+            Never use GET when sending passwords or other sensitive information!</td>
+          <td>POST is a little safer than GET because the parameters are not stored in browser history or in web server logs</td>
+        </tr>
+        <tr>
+          <th scope="row">Visibility</th>
+          <td>Data is visible to everyone in the URL</td>
+          <td>Data is not displayed in the URL</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
 
