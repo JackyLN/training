@@ -1,7 +1,7 @@
 
 public class Hello {
   public static void main(String args[]) {
-    System.out.println("Helloworld");
+    System.out.println("Hello Chi");
 
     int z, y, temp;
     System.out.println("Enter z and y");
