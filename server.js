@@ -108,12 +108,14 @@ app.post('/add-book', (req, res) => {
     website: website === null ? undefined : website
   });
 
-  res.status(200).send("OK");
+  //res.status(200).send("OK");
+  res.redirect('/table-ejs');
 });
 
 //update 1 book
 // PUT is idempotent, so if you PUT an object twice, it has no effect
-app.put('/update-book', (req, res) => {
+// HTML form only support post / get method
+app.post('/update-book', (req, res) => {
   const {books} = req.session;
   if (!books) return res.status(404).send("You need to load book list first");
 
@@ -136,7 +138,8 @@ app.put('/update-book', (req, res) => {
     return false;
   });
 
-  res.status(200).send("OK");
+  //res.status(200).send("OK");
+  res.redirect('/table-ejs');
 });
 
 app.delete('/delete-book', (req, res) => {
@@ -150,14 +153,47 @@ app.delete('/delete-book', (req, res) => {
   if (index > -1) {
     array.splice(index, 1);
 
-    return res.status(200).send("OK");
+    //return res.status(200).send("OK");
+    res.redirect('/table-ejs');
   }
   return res.status(404).send("Not found");
 })
 
-//render table
-app.get('/table', (req, res) => {
-  res.render('table');
+app.get('/refresh-data', (req, res) => {
+  const sess = req.session;
+  sess.books = books.books;
+
+  res.render('table', {data: sess.books});
+})
+
+//render table ejs
+app.get('/table-ejs', (req, res) => {
+  const sess = req.session;
+
+  if (!sess.books) {
+    sess.books = books.books;
+  }
+  res.render('table', {data: sess.books});
+})
+
+app.get('/book-form', (req, res) => {
+  const { isbn } = req.query;
+  if(!isbn) return res.render('book-form');
+  else {
+    const {books} = req.session;
+    if (!books) return res.status(404).send("You need to load book list first");
+
+    const book = books.find(e => e.isbn == isbn);
+    return res.render('book-form', {data: book});
+  }
+})
+
+//render table react
+app.get('/table-react', (req, res) => {
+  res.sendFile(__dirname + `/src/views/table-react/table-react.html`);
+})
+app.get('/index.js', (req, res) => {
+  res.sendFile(__dirname + `/src/views/table-react/index.js`);
 })
 
 app.listen(port, () => console.log(`API running on PORT ${port}!`))
